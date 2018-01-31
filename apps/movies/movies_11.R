@@ -137,6 +137,7 @@ server <- function(input, output) {
   # Print number of movies plotted ----------------------------------
   output$n <- renderText({
     nrow(movies_sample())
+  })
   
   # Print data table if checked -------------------------------------
   output$moviestable <- DT::renderDataTable(
