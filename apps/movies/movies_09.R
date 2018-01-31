@@ -125,7 +125,7 @@ server <- function(input, output) {
   
   # Print number of movies plotted ----------------------------------
   output$n <- renderUI({
-    nrow(movies_subset())
+    nrow(movies_sample())
   })
   
   # Print data table if checked -------------------------------------
