@@ -83,7 +83,8 @@ ui <- fluidPage(
       br(),        # a little bit of visual separation
       
       # Print number of obs plotted ---------------------------------
-      uiOutput(outputId = "n"),
+      "Number of movies in this dataset:",
+      textOutput(outputId = "n", inline = TRUE),
       br(), br(),    # a little bit of visual separation
 
       # Show data table ---------------------------------------------
@@ -112,12 +113,8 @@ server <- function(input, output) {
   })
   
   # Print number of movies plotted ----------------------------------
-  output$n <- renderUI({
-    types <- movies_subset()$title_type %>% 
-      factor(levels = input$selected_type) 
-    counts <- table(types)
-    
-    HTML(paste("There are", counts, input$selected_type, "movies in this dataset. <br>"))
+  output$n <- renderText({
+    nrow(movies_subset())
   })
   
   # Print data table if checked -------------------------------------
